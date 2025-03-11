@@ -55,7 +55,7 @@ export default function Hero() {
             </div>
 
             {/* Logo */}
-            <div className="relative z-10 w-full max-w-[800px] px-4">
+            <div className="relative z-10 w-full max-w-[800px] px-4 flex flex-col items-center gap-8">
                 <Image
                     src="/logo.png"
                     alt="Layer One Logo"
@@ -64,8 +64,31 @@ export default function Hero() {
                     className="w-full h-auto"
                     priority
                 />
+                
+                {/* Coming Soon Text */}
+                <div className="text-center">
+                    <h1 className="text-[#eb6a1e] text-6xl font-bold font-roboto tracking-wider mb-4
+                        animate-fade-in">
+                        COMING SOON
+                    </h1>
+                    <p className="text-white/80 font-roboto text-xl font-light tracking-widest mb-16
+                        animate-fade-in-delay">
+                        TECH SOLUTIONS FOR THE MODERN WORLD
+                    </p>
+                </div>
+            </div>
+
+            {/* Footer Text */}
+            <div className=" absolute bottom-8 text-white/60 font-roboto text-sm text-center
+                animate-fade-in-delay-long">
+                Contact: <a 
+                    href="mailto:contact@layeroneconsultants.com" 
+                    className="text-[#eb6a1e] hover:text-[#eb6a1e]/80 transition-colors"
+                >
+                    contact@layeroneconsultants.com
+                </a> | © 2025 Layer One IT Consultants
             </div>
         </div>
     </>
-);
+  );
 }

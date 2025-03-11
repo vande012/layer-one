@@ -1,54 +1,79 @@
-// @ts-nocheck
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 import Image from 'next/image';
-
-declare global {
-  interface Window {
-    VANTA: any;
-    p5: any;
-  }
-}
+import Terminal from './Terminal';
 
 export default function Footer() {
   const vantaRef = useRef<HTMLDivElement>(null);
   const vantaEffect = useRef<any>(null);
+  const [scriptsLoaded, setScriptsLoaded] = useState(false);
+
+  // Handle script loading
+  const handleScriptsLoad = () => {
+    setScriptsLoaded(prev => !prev);
+  };
 
   useEffect(() => {
-    if (!vantaEffect.current && window.VANTA) {
-      vantaEffect.current = window.VANTA.TRUNK({
-        el: vantaRef.current,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0xeb6a1e,
-        spacing: 1.00,
-        chaos: 3.00
-      });
+    if (scriptsLoaded && !vantaEffect.current && window.VANTA) {
+      // Small delay to ensure everything is loaded
+      const timer = setTimeout(() => {
+        if (vantaRef.current) {
+          vantaEffect.current = window.VANTA.TRUNK({
+            el: vantaRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xeb6a1e,
+            spacing: 1.00,
+            chaos: 3.00
+          });
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
     }
 
     return () => {
       if (vantaEffect.current) {
         vantaEffect.current.destroy();
+        vantaEffect.current = null;
       }
     };
-  }, []);
+  }, [scriptsLoaded]);
 
   return (
     <>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js" strategy="beforeInteractive" />
+      <Script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" 
+        onLoad={handleScriptsLoad}
+      />
+      <Script 
+        src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js" 
+        onLoad={handleScriptsLoad}
+      />
       
       <footer className="relative h-[400px] w-full flex">
-        {/* Left side with Vanta effect */}
-        <div className="w-1/2 relative overflow-hidden">
-          <div ref={vantaRef} className="absolute inset-0 w-[200%]" />
+        {/* Left side with Terminal and Vanta effect */}
+        <div className="w-1/2 relative overflow-hidden flex">
+          {/* Terminal positioned on the left */}
+          <div className="absolute left-0 z-20 w-1/2">
+            <Terminal />
+          </div>
+          {/* Vanta effect container */}
+          <div 
+            ref={vantaRef} 
+            className="absolute inset-0 w-[200%]"
+            style={{ 
+              opacity: scriptsLoaded ? 1 : 0,
+              transition: 'opacity 0.3s ease-in-out'
+            }}
+          />
         </div>
 
         {/* Right side with content */}
@@ -97,4 +122,4 @@ export default function Footer() {
       </footer>
     </>
   );
-} 
+}
