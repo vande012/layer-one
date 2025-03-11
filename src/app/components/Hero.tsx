@@ -4,6 +4,7 @@
 import { useEffect, useRef } from 'react';
 import Script from 'next/script';
 import Image from 'next/image';
+import Terminal from './Terminal';
 
 declare global {
   interface Window {
@@ -44,21 +45,27 @@ export default function Hero() {
 
   return (
     <>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js" strategy="beforeInteractive" />
-      
-      <div ref={vantaRef} className="relative min-h-screen w-full flex items-center justify-center">
-        <div className="relative z-10 w-full max-w-[800px] px-4">
-          <Image
-            src="/logo.png"
-            alt="Layer One Logo"
-            width={600}
-            height={120}
-            className="w-full h-auto"
-            priority
-          />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="beforeInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js" strategy="beforeInteractive" />
+        
+        <div ref={vantaRef} className="relative min-h-screen w-full flex flex-col items-center justify-center">
+            {/* Terminal code in top left */}
+            <div className="absolute top-0 left-0 z-10">
+                <Terminal />
+            </div>
+
+            {/* Logo */}
+            <div className="relative z-10 w-full max-w-[800px] px-4">
+                <Image
+                    src="/logo.png"
+                    alt="Layer One Logo"
+                    width={600}
+                    height={120}
+                    className="w-full h-auto"
+                    priority
+                />
+            </div>
         </div>
-      </div>
     </>
-  );
+);
 }
