@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    dockerfile: Dockerfile.dev
+    ports:
+      - "3002:3002"
+      - "3003:3003"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
