@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Layer One - Unraid Setup
 
-## Getting Started
+## Development Branch (dev.layerone.com)
+1. In Unraid Docker tab:
+   - Port: 3001:3001
+   - Path: /mnt/user/appdata/layer-one/dev
+   - Environment Variables:
+     - NODE_ENV=development
+     - PORT=3001
 
-First, run the development server:
+## Production Branch (layerone.com)
+1. In Unraid Docker tab:
+   - Port: 3002:3002
+   - Path: /mnt/user/appdata/layer-one/prod
+   - Environment Variables:
+     - NODE_ENV=production
+     - PORT=3002
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Volume Mappings for Both:
+- Config: /mnt/user/appdata/layer-one/{dev|prod}/config:/app/config
+- Data: /mnt/user/appdata/layer-one/{dev|prod}/data:/app/data
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Network Settings:
+- Network Type: Bridge
+- Additional Networks: None required
+- DNS Server: Default
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Advanced Settings:
+- Auto-update: On
+- Repository: your-docker-hub/layer-one:{dev|prod}
