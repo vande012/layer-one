@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Roboto, Orbitron } from "next/font/google";
 import "./globals.css";
 
 
@@ -19,6 +19,11 @@ const roboto = Roboto({
   weight: ['300', '400', '700'],
 });
 
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ['latin'],
+});
+
 export const metadata: Metadata = {
   title: "Layer One IT Consultants",
   description: "Solutions for the modern world",
@@ -32,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${orbitron.variable} antialiased`}
       >
         {children}
       </body>

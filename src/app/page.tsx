@@ -2,12 +2,16 @@ import Hero from './components/Hero';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 
+
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen">
-      <Nav />
-      <Hero />
-      <Footer />
-    </main>
+    <>
+      {/* Main Content */}
+      <main className="flex flex-col min-h-screen relative">
+        <Nav />
+        <Hero />
+        <Footer />
+      </main>
+    </>
   );
 }

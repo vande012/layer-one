@@ -1,62 +1,24 @@
 // @ts-nocheck
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Script from 'next/script';
 import Image from 'next/image';
 import Terminal from './Terminal';
 import Link from 'next/link';
-
-declare global {
-  interface Window {
-    VANTA: any;
-    THREE: any;
-  }
-}
+import DotNetworkBackground from './WebBg';
 
 export default function Hero() {
-  const vantaRef = useRef<HTMLDivElement>(null);
-  const vantaEffect = useRef<any>(null);
-
-  useEffect(() => {
-    if (!vantaEffect.current && window.VANTA) {
-      vantaEffect.current = window.VANTA.NET({
-        el: vantaRef.current,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0xf05d05,
-        backgroundColor: 0x2d2d2d,
-        points: 15.00,
-        maxDistance: 24.00,
-        spacing: 18.00
-      });
-    }
-
-    return () => {
-      if (vantaEffect.current) {
-        vantaEffect.current.destroy();
-      }
-    };
-  }, []);
-
   return (
     <>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js" strategy="beforeInteractive" />
+        <DotNetworkBackground />
         
-        <div ref={vantaRef} className="relative min-h-screen w-full flex flex-col items-center justify-center">
+        <div className="relative min-h-screen w-full flex flex-col items-center justify-center">
             {/* Terminal code in top left */}
             <div className="absolute top-0 left-0 z-10">
                 <Terminal />
             </div>
 
             {/* Logo and Content Container - moved up with mt-[-100px] */}
-            <div className="relative z-10 w-full max-w-[1200px] px-4 flex flex-col items-center gap-16">
+            <div className="relative z-10 w-full max-w-[1200px] px-4 flex flex-col mt-6 items-center gap-16">
                 <Image
                     src="/logo.png"
                     alt="Layer One Logo"
@@ -68,19 +30,19 @@ export default function Hero() {
                 
                 {/* Coming Soon Text */}
                 <div className="text-center">
-                    <h1 className="text-white text-5xl  font-roboto tracking-wider mb-4
+                    <h1 className="text-white lg:text-5xl text-3xl font-bold font-[orbitron] tracking-wider mb-4 
                         animate-glow">
                         COMING SOON
                     </h1>
-                    <p className="text-white/80 font-roboto text-2xl font-light tracking-widest mb-5
+                    <p className="text-white/80 lg:text-2xl text-md font-light tracking-widest mb-2
                         animate-fade-in-delay">
                         TECH SOLUTIONS FOR THE MODERN WORLD
                     </p>
                 </div>
 
                 {/* Partners Section */}
-                <div className="text-center animate-fade-in-delay mt-20">
-                    <h2 className="text-white text-3xl font-roboto mb-2 border-b-3 border-[#eb6a1e] inline-block pb-2 animate-glow">
+                <div className="text-center animate-fade-in-delay mt-5">
+                    <h2 className="text-white text-3xl font-[orbitron] mb-2 border-b-3 border-[#eb6a1e] inline-block pb-2 animate-glow">
                         PARTNERS
                     </h2>
                     <div className="flex justify-center">
