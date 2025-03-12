@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import Script from 'next/script';
 import Image from 'next/image';
 import Terminal from './Terminal';
+import Link from 'next/link';
 
 declare global {
   interface Window {
@@ -54,32 +55,56 @@ export default function Hero() {
                 <Terminal />
             </div>
 
-            {/* Logo */}
-            <div className="relative z-10 w-full max-w-[800px] px-4 flex flex-col items-center gap-8">
+            {/* Logo and Content Container - moved up with mt-[-100px] */}
+            <div className="relative z-10 w-full max-w-[1200px] px-4 flex flex-col items-center gap-16">
                 <Image
                     src="/logo.png"
                     alt="Layer One Logo"
-                    width={600}
-                    height={120}
+                    width={1000}
+                    height={200}
                     className="w-full h-auto"
                     priority
                 />
                 
                 {/* Coming Soon Text */}
                 <div className="text-center">
-                    <h1 className="text-[#eb6a1e] text-6xl font-bold font-roboto tracking-wider mb-4
-                        animate-fade-in">
+                    <h1 className="text-white text-5xl  font-roboto tracking-wider mb-4
+                        animate-glow">
                         COMING SOON
                     </h1>
-                    <p className="text-white/80 font-roboto text-xl font-light tracking-widest mb-16
+                    <p className="text-white/80 font-roboto text-2xl font-light tracking-widest mb-5
                         animate-fade-in-delay">
                         TECH SOLUTIONS FOR THE MODERN WORLD
                     </p>
                 </div>
+
+                {/* Partners Section */}
+                <div className="text-center animate-fade-in-delay mt-20">
+                    <h2 className="text-white text-3xl font-roboto mb-2 border-b-3 border-[#eb6a1e] inline-block pb-2 animate-glow">
+                        PARTNERS
+                    </h2>
+                    <div className="flex justify-center">
+                        <Link 
+                            href="https://theunnamedcorp.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-opacity hover:opacity-80"
+                        >
+                            <Image
+                                src="/unnamed-logo.png"
+                                alt="The Unnamed Corp - Gaming Community"
+                                width={350}
+                                height={100}
+                                className="h-auto"
+                                priority
+                            />
+                        </Link>
+                    </div>
+                </div>
             </div>
 
             {/* Footer Text */}
-            <div className=" absolute bottom-8 text-white/60 font-roboto text-sm text-center
+            <div className="absolute bottom-3 text-white/60 font-roboto text-sm text-center
                 animate-fade-in-delay-long">
                 Contact: <a 
                     href="mailto:contact@layeroneconsultants.com" 

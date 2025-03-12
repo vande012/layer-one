@@ -1,15 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #1d1d1d;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +27,28 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 15px rgba(235, 106, 30, 0.9),
+                 0 0 25px rgba(235, 106, 30, 0.7),
+                 0 0 35px rgba(235, 106, 30, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(235, 106, 30, 0.95),
+                 0 0 35px rgba(235, 106, 30, 0.8),
+                 0 0 45px rgba(235, 106, 30, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(235, 106, 30, 0.9),
+                 0 0 25px rgba(235, 106, 30, 0.7),
+                 0 0 35px rgba(235, 106, 30, 0.5);
+  }
+}
+
+.animate-glow {
+  animation: glowPulse 3s ease-in-out infinite;
 }
 
 .animate-fade-in {
