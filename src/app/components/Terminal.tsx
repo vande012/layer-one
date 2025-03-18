@@ -5,16 +5,40 @@ import { useEffect, useState } from 'react';
 const codeLines = [
     "// Secure your business data",
     "setupFirewall(); enableEncryption();",
+    "// Enhance customer experience",
+    "improveWebsiteSpeed(); mobileOptimize();",
+    "// Grow your business",
+    "launchEcommerce(); integratePayment();",
+    "// Lock down vulnerabilities",
+    "patchExploits(); enforceMFA();",
     "// Boost your online presence",
     "optimizeSEO(); trackAnalytics();",
     "// Protect against cyber threats",
     "installAntivirus(); updateSoftware();",
     "// Streamline operations",
     "automateBackups(); syncInventory();",
-    "// Enhance customer experience",
-    "improveWebsiteSpeed(); mobileOptimize();",
-    "// Grow your business",
-    "launchEcommerce(); integratePayment();"
+    "// Keep hackers out",
+    "monitorTraffic(); detectIntrusions();",
+    "// Encrypt everything",
+    "secureData(); hashPasswords();",
+    "// Dominate search rankings",
+    "boostKeywords(); optimizeContent();",
+    "// Convert visitors into customers",
+    "A/BTestPages(); improveUX();",
+    "// Elevate brand authority",
+    "publishThoughtLeadership(); engageAudience();",
+    "// Accelerate site speed",
+    "lazyLoadImages(); minifyAssets();",
+    "// Automate like a pro",
+    "scheduleTasks(); AIOptimize();",
+    "// Sync everything seamlessly",
+    "integrateCRM(); streamlineWorkflows();",
+    "// Sell smarter, not harder",
+    "AIRecommendations(); dynamicPricing();",
+    "// Build trust & credibility",
+    "addSSL(); enableReviews();",
+    "// Expand globally",
+    "multiCurrency(); translateSite();",
 ];
 
 const Terminal = () => {
@@ -35,7 +59,7 @@ const Terminal = () => {
                 currentLineIndex = 0;
                 currentLines = [];
                 setLines([]);
-                setTimeout(typeNextChar, 1000);
+                setTimeout(typeNextChar, 2000);
                 return;
             }
 
@@ -66,7 +90,7 @@ const Terminal = () => {
     }, []);
 
     return (
-        <div className="font-mono text-base leading-relaxed tracking-wide p-6 bg-black/20 rounded-lg">
+        <div className="font-mono text-base leading-relaxed tracking-wide p-6  rounded-lg">
             {lines.map((line, i) => {
                 // Add safety check for line
                 if (!line) return null;

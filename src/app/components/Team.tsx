@@ -30,10 +30,10 @@ const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Joe",
-    role: "CEO",
-    image: "/Joe.png",
-    bio: "Tech visionary with 15+ years of experience in IT solutions and business transformation.",
+    name: "Ryan",
+    role: "Head of Software Engineering",
+    image: "/Ryan.jpg",
+    bio: "Programmer, Designer, and Entrepreneur with a passion for creating innovative solutions.",
     social: {
       linkedin: "https://linkedin.com/in/johndoe",
       github: "https://github.com/johndoe",

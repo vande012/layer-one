@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import Team from './components/Team';
 import TerminalCTA from './components/TerminalCTA';
+import LogoCarousel from './components/LogoCarousel';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         {/* <Nav /> */}
         <Hero />
         <AboutUs />
+        <LogoCarousel />
         <TerminalCTA />
         <Team />
         <Footer />
