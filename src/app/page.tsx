@@ -1,17 +1,18 @@
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-import Nav from './components/Nav';
-
+import AboutUs from './components/AboutUs';
+import Team from './components/Team';
+import TerminalCTA from './components/TerminalCTA';
 
 export default function Home() {
   return (
-    <>
-      {/* Main Content */}
-      <main className="flex flex-col min-h-screen relative">
-        <Nav />
+    <main className="relative">
+        {/* <Nav /> */}
         <Hero />
+        <AboutUs />
+        <TerminalCTA />
+        <Team />
         <Footer />
-      </main>
-    </>
+    </main>
   );
 }

@@ -72,6 +72,19 @@ export default function Nav() {
         onLoad={() => setVantaLoaded(true)}
       />
 
+       {/* Contact information - centered at top */}
+       <div className="fixed top-0 w-full z-40 flex justify-center pt-2 px-4 bg-opacity-70 backdrop-blur-sm">
+        <div className="text-white/60 font-roboto text-xs sm:text-sm text-center animate-fade-in-delay-long truncate">
+          Contact: <a 
+            href="mailto:contact@layeroneconsultants.com" 
+            className="text-[#eb6a1e] hover:text-[#eb6a1e]/80 transition-colors"
+          >
+            <span className="hidden sm:inline">contact@layeroneconsultants.com</span>
+            <span className="sm:hidden">Email Us</span>
+          </a> <span className="hidden xs:inline">|</span> <span className="whitespace-nowrap">© 2025 Layer One IT Consultants</span>
+        </div>
+      </div>
+
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -85,7 +98,7 @@ export default function Nav() {
 
       {/* Overlay */}
       <div 
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity z-40 ${
+        className={`fixed inset-0 bg-black backdrop-blur-sm transition-opacity z-40 ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
@@ -93,7 +106,7 @@ export default function Nav() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 right-0 w-full sm:w-[400px] h-full bg-[#1d1d1d] z-40 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 w-full sm:w-[400px] h-full  z-40 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -183,4 +196,4 @@ export default function Nav() {
       </aside>
     </>
   );
-} 
+}

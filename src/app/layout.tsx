@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto, Orbitron } from "next/font/google";
 import "./globals.css";
@@ -35,10 +37,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${orbitron.variable} antialiased`}
-      >
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        {/* Add any additional fonts or meta tags here */}
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
+      <body className={` ${roboto.className} ${orbitron.variable} ${geistSans.variable} ${geistMono.variable} bg-black text-white overflow-x-hidden`}>
         {children}
       </body>
     </html>

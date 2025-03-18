@@ -15,5 +15,9 @@
       },
     },
    },
+   safelist: [
+    'screen-flicker',
+    'glitch-text'
+  ],
    plugins: [],
  }
