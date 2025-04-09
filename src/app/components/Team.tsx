@@ -72,7 +72,7 @@ const Team = () => {
     <section 
       ref={sectionRef}
       className="relative py-20 sm:py-28 md:py-32 overflow-hidden bg-black/60" 
-      id="team-section"
+      id="team"
     >
       <div className="container mx-auto px-4 relative z-10">
         {/* Header Section with animations */}

@@ -12,6 +12,7 @@
     "unraid:deploy": "./docker/unraid-deploy.sh"
   },
   "dependencies": {
+    "animejs": "^4.0.0",
     "framer-motion": "^12.5.0",
     "next": "15.2.2",
     "react": "^19.0.0",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/animejs": "^3.1.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

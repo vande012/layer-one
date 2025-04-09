@@ -9,7 +9,7 @@ const brands = [
   { name: 'Apple', image: '/600px-Apple-logo.png' },
   { name: 'AWS', image: '/2560px-Amazon_Web_Services_Logo.svg.png' },
   { name: 'CDW', image: '/2560px-CDW_Logo.svg.png' },
-  { name: 'Squarespace', image: '/Squarespace.png' },
+  { name: 'Microsoft', image: '/Microsoft.webp' },
   { name: 'Rubrik', image: '/a1a.Rubrik-horizontal-RGB-logos_transparent_White.png' },
   { name: 'APC', image: '/apc-01-logo-png-transparent.png' },
   { name: 'Cisco', image: '/Cisco-Symbol.png' },
@@ -40,6 +40,7 @@ export default function LogoShowcase() {
   return (
     <section 
       ref={sectionRef}
+      id="partners"
       className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-black/20"
     >
       {/* Background geometric elements */}

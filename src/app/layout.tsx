@@ -17,18 +17,31 @@ const geistMono = Geist_Mono({
 
 const roboto = Roboto({
   variable: "--font-roboto",
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
 });
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
-  subsets: ['latin'],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Layer One IT Consultants",
   description: "Solutions for the modern world",
+  metadataBase: new URL(
+    process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_SITE_URL || "https://layeroneconsultants.com"
+  ),
+  openGraph: {
+    images: [
+      {
+        url: "/OG-Image.png",
+        alt: "Layer One IT Consultants",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -40,10 +53,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        {/* Add any additional fonts or meta tags here */}
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        {/* Add any additional meta tags here */}
       </head>
-      <body className={` ${roboto.className} ${orbitron.variable} ${geistSans.variable} ${geistMono.variable} bg-black text-white overflow-x-hidden`}>
+      <body className={`${roboto.className} ${orbitron.variable} ${geistSans.variable} ${geistMono.variable} bg-black text-white overflow-x-hidden`}>
         {children}
       </body>
     </html>

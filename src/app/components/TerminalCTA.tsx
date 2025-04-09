@@ -12,6 +12,7 @@ export default function TerminalCTA() {
   return (
     <section 
       ref={sectionRef}
+      id="terminal"
       className="relative w-full py-12 sm:py-16 md:py-20 overflow-hidden "
     >
       {/* Background geometric elements */}

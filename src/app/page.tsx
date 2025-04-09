@@ -4,17 +4,20 @@ import AboutUs from './components/AboutUs';
 import Team from './components/Team';
 import TerminalCTA from './components/TerminalCTA';
 import LogoCarousel from './components/LogoCarousel';
+import Nav from './components/Nav';
 
 export default function Home() {
   return (
-    <main className="relative">
-        {/* <Nav /> */}
+    <main className="relative overflow-visible">
+        <Nav />
         <Hero />
-        <AboutUs />
-        <LogoCarousel />
-        <TerminalCTA />
-        <Team />
-        <Footer />
+        <div className="relative z-10 overflow-visible">
+          <AboutUs />
+          <LogoCarousel />
+          <TerminalCTA />
+          <Team />
+          <Footer />
+        </div>
     </main>
   );
 }

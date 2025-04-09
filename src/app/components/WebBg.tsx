@@ -186,7 +186,7 @@ const DotNetworkBackground = () => {
     cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0));
   }
       // Trigger random animations
-      if (Math.random() < 0.9) triggerRandomSpike();
+      if (Math.random() < 0.5) triggerRandomSpike();
       if (Math.random() < 0.9) triggerRandomDrop();
 
       // Update dots
