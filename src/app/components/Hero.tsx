@@ -234,6 +234,21 @@ export default function Hero() {
                     priority
                   />
                 </Link>
+                <Link 
+                  href="https://foreverfadedmke.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-opacity hover:opacity-80 w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[300px]"
+                >
+                  <Image
+                    src="/foreverlogo.png"
+                    alt="Forever Logo"
+                    width={350}
+                    height={100}
+                    className="w-full h-auto"
+                    priority
+                  />
+                </Link>
               </div>
             </div>
           </div>

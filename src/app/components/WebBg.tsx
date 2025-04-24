@@ -15,9 +15,24 @@ const DotNetworkBackground = () => {
   const cameraAngleRef = useRef(0);
   const spikingDotsRef = useRef(new Set());
   const droppingDotsRef = useRef(new Set());
+  const isMobileRef = useRef(false);
+  const animationSpeedRef = useRef(0.12);
 
   useEffect(() => {
     if (!containerRef.current) return;
+
+    // Check if mobile/small screen
+    const checkMobile = () => {
+      isMobileRef.current = window.innerWidth < 768;
+      // Slower animation speed for mobile
+      animationSpeedRef.current = isMobileRef.current ? 0.06 : 0.12;
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
 
     // Initialize scene
     const scene = new THREE.Scene();
@@ -170,24 +185,25 @@ const DotNetworkBackground = () => {
     // Animation function
     const animate = () => {
       requestAnimationFrame(animate);
-      timeRef.current += 0.12;
+      // Use dynamic speed based on device type
+      timeRef.current += animationSpeedRef.current;
     
-       // Add camera rotation
-  cameraAngleRef.current += 0.001; // Adjust speed here
-  const radius = 40; // Match this to your initial camera distance
-  const height = 10; // Match this to your initial camera height
-  
-  if (cameraRef.current) {
-    cameraRef.current.position.x = Math.sin(cameraAngleRef.current) * radius;
-    cameraRef.current.position.z = Math.cos(cameraAngleRef.current) * radius;
-    cameraRef.current.position.y = height;
-    
-    // Make camera look at center
-    cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0));
-  }
-      // Trigger random animations
-      if (Math.random() < 0.5) triggerRandomSpike();
-      if (Math.random() < 0.9) triggerRandomDrop();
+      // Add camera rotation - slower on mobile
+      cameraAngleRef.current += isMobileRef.current ? 0.0005 : 0.001; // Adjust speed here
+      const radius = 40; // Match this to your initial camera distance
+      const height = 10; // Match this to your initial camera height
+      
+      if (cameraRef.current) {
+        cameraRef.current.position.x = Math.sin(cameraAngleRef.current) * radius;
+        cameraRef.current.position.z = Math.cos(cameraAngleRef.current) * radius;
+        cameraRef.current.position.y = height;
+        
+        // Make camera look at center
+        cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0));
+      }
+      // Trigger random animations - less frequent on mobile
+      if (Math.random() < (isMobileRef.current ? 0.25 : 0.5)) triggerRandomSpike();
+      if (Math.random() < (isMobileRef.current ? 0.45 : 0.9)) triggerRandomDrop();
 
       // Update dots
       dotsRef.current.forEach((dot) => {
@@ -207,9 +223,11 @@ const DotNetworkBackground = () => {
         const wave = Math.sin(timeRef.current * frequency + phaseOffset) * amplitude * (1 - depth * 0.5);
         let finalY = originalPosition.y + wave;
         
-        // Handle spiking animation
+        // Handle spiking animation - slower on mobile
         if (spiking) {
-          dot.userData.spikeProgress += 0.015;
+          // Use half the speed on mobile
+          const spikeSpeed = isMobileRef.current ? 0.008 : 0.015;
+          dot.userData.spikeProgress += spikeSpeed;
           if (dot.userData.spikeProgress >= 1) {
             dot.userData.spiking = false;
             spikingDotsRef.current.delete(dot);
@@ -218,9 +236,11 @@ const DotNetworkBackground = () => {
           finalY += spikeCurve;
         }
 
-        // Handle dropping animation
+        // Handle dropping animation - slower on mobile
         if (dropping) {
-          dot.userData.dropProgress += 0.015;
+          // Use half the speed on mobile
+          const dropSpeed = isMobileRef.current ? 0.008 : 0.015;
+          dot.userData.dropProgress += dropSpeed;
           if (dot.userData.dropProgress >= 1) {
             dot.userData.dropping = false;
             droppingDotsRef.current.delete(dot);
@@ -239,7 +259,9 @@ const DotNetworkBackground = () => {
         raycaster.ray.intersectPlane(plane, intersection);
         
         const distanceToMouse = intersection.distanceTo(dot.position);
-        const influenceRadius = 5 * (1 - depth * 0.5);
+        // Smaller influence radius on mobile
+        const baseInfluenceRadius = isMobileRef.current ? 3 : 5;
+        const influenceRadius = baseInfluenceRadius * (1 - depth * 0.5);
         
         if (distanceToMouse < influenceRadius) {
           // Instead of just moving the dot up, trigger spike or drop
@@ -299,6 +321,7 @@ const DotNetworkBackground = () => {
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', onWindowResize);
+      window.removeEventListener('resize', checkMobile);
       
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
