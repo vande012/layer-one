@@ -1,7 +1,6 @@
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
-import Team from './components/Team';
 import TerminalCTA from './components/TerminalCTA';
 import LogoCarousel from './components/LogoCarousel';
 import Nav from './components/Nav';
@@ -15,7 +14,6 @@ export default function Home() {
           <AboutUs />
           <LogoCarousel />
           <TerminalCTA />
-          <Team />
           <Footer />
         </div>
     </main>
